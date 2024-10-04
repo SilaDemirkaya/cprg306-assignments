@@ -1,62 +1,34 @@
-"use client"; // This directive is required for client-side React hooks
+"use client"; // Ensures this runs client-side in Next.js
 
 import { useState } from 'react';
 
 const NewItem = () => {
-  const [quantity, setQuantity] = useState(1); // Initialize quantity with 1
+  const [quantity, setQuantity] = useState(1);
 
-  // Increment quantity, ensure it does not exceed 20
-  const increment = () => {
-    if (quantity < 20) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  // Decrement quantity, ensure it does not go below 1
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const increment = () => setQuantity(prev => (prev < 20 ? prev + 1 : prev));
+  const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : prev));
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-xl font-bold mb-4">Add a New Item</h1>
-      <form className="space-y-4">
-        <label className="block">
-          <span>Item Name:</span>
-          <input type="text" name="name" className="block w-full p-2 border rounded" />
-        </label>
-        
-        <label className="block">
-          <span>Item Price:</span>
-          <input type="number" name="price" className="block w-full p-2 border rounded" />
-        </label>
-
-        <div className="flex items-center space-x-4">
-          <button 
-            type="button"
-            onClick={decrement}
-            className="px-4 py-2 bg-red-500 text-white rounded disabled:bg-gray-400"
-            disabled={quantity === 1}
-          >
-            -
-          </button>
-          <span className="font-bold">{quantity}</span>
-          <button 
-            type="button"
-            onClick={increment}
-            className="px-4 py-2 bg-green-500 text-white rounded disabled:bg-gray-400"
-            disabled={quantity === 20}
-          >
-            +
-          </button>
-        </div>
-
-        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
-          Add Item
+    <div className="flex justify-center items-start pt-4">
+      <div className="flex items-center bg-white shadow px-6 py-4 rounded-md">
+        <span className="text-lg font-medium mr-6 text-black">{quantity}</span>
+        <button 
+          onClick={decrement}
+          disabled={quantity === 1}
+          className={`text-white rounded-md p-2 h-8 w-8 flex justify-center items-center ${
+            quantity === 1 ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'
+          }`} // Conditional class for color
+        >
+          -
         </button>
-      </form>
+        <button 
+          onClick={increment}
+          disabled={quantity === 20}
+          className="text-white bg-blue-500 hover:bg-blue-600 rounded-md p-2 h-8 w-8 ml-2 flex justify-center items-center"
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 };
