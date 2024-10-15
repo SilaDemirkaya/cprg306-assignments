@@ -50,7 +50,7 @@ export default function ItemList() {
         </button>
       </div>
 
-      <div className="text-white capitalize">
+      <div className="text-white capitalize font-bold ">
         {grouped ? (
           Object.keys(groupedItems).sort().map(category => (
             <div key={category}>

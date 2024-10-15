@@ -7,7 +7,7 @@ export default function ItemList({ items }) {
   const [sortBy, setSortBy] = useState("name");
   const [grouped, setGrouped] = useState(false);
 
-  // Helper function to group items by category
+  
   const groupItemsByCategory = (items) => {
     return items.reduce((acc, item) => {
       acc[item.category] = acc[item.category] || [];
@@ -49,7 +49,7 @@ export default function ItemList({ items }) {
         </button>
       </div>
 
-      <div className="text-white capitalize">
+      <div className="text-white capitalize font-bold">
         {grouped ? (
           Object.keys(groupedItems).sort().map(category => (
             <div key={category}>
