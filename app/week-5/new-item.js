@@ -34,7 +34,7 @@ export default function NewItem() {
 
   return (
     <div className="flex flex-col items-center justify-center pt-4">
-      <div className="bg-blue-950 shadow px-6 py-4 rounded-md w-full max-w-md">
+      <div className="bg-blue-900 shadow px-6 py-4 rounded-md w-full max-w-md">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input 
