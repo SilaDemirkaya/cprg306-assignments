@@ -1,4 +1,4 @@
-"use client"; // Ensures this runs client-side in Next.js
+"use client"; 
 
 import { useState } from 'react';
 
