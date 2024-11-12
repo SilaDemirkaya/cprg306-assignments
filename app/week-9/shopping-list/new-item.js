@@ -1,11 +1,11 @@
-"use client"; // Ensures this runs client-side in Next.js
+"use client"; 
 
 import { useState } from 'react';
 
-export default function NewItem() {
+export default function NewItem({ onAddItem }) {
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("produce");
+  const [category, setCategory] = useState("Produce");
 
   const increment = () => setQuantity(prev => prev + 1);
   const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : prev));
@@ -18,18 +18,23 @@ export default function NewItem() {
       return;
     }
 
+    // Generate random ID for the item
+    const id = Math.random().toString(36).substring(2, 9);
+
     const item = {
+      id,
       name,
       category,
       quantity,
     };
 
-    console.log(item);
-    alert(`Name: ${name}, Category: ${category}, Quantity: ${quantity}`);
+    // Call the onAddItem prop to add the item to the list
+    onAddItem(item);
 
+    // Clear the form after submission
     setName("");
     setQuantity(1);
-    setCategory("produce");
+    setCategory("Produce");
   };
 
   return (
@@ -56,14 +61,14 @@ export default function NewItem() {
                   type="button"
                   onClick={decrement}
                   disabled={quantity === 1}
-                  className="text-white bg-blue-500 hover:bg-blue-900 rounded-md p-2 h-8 w-12 flex justify-center items-center" // Centered content
+                  className="text-white bg-blue-500 hover:bg-blue-900 rounded-md p-2 h-8 w-12 flex justify-center items-center"
                 >
                   -
                 </button>
                 <button 
                   type="button"
                   onClick={increment} 
-                  className="text-white bg-blue-500 hover:bg-blue-600 rounded-md p-2 h-8 w-12 ml-2 flex justify-center items-center" // Centered content
+                  className="text-white bg-blue-500 hover:bg-blue-600 rounded-md p-2 h-8 w-12 ml-2 flex justify-center items-center"
                 >
                   +
                 </button>
